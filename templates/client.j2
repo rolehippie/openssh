@@ -1,0 +1,33 @@
+AddressFamily {{ openssh_address_family }}
+{% for host in openssh_remote_hosts %}
+
+Host {{ host.names | join(' ') }}
+    {{ host.options | join("\n") | indent(4) }}
+{% endfor %}
+
+Host *
+    Port {{ openssh_client_port }}
+
+    Protocol 2
+    BatchMode no
+    CheckHostIP yes
+    StrictHostKeyChecking ask
+
+    Ciphers {{ openssh_valid_ciphers | join(',') }}
+    MACs {{ openssh_valid_macs | join(',') }}
+    KexAlgorithms {{ openssh_valid_kex | join(',') }}
+
+    ForwardAgent {{ openssh_client_allow_agent_forwarding }}
+    ForwardX11 {{ openssh_client_x11_forwarding }}
+
+    HostbasedAuthentication {{ openssh_client_hostbased_authentication }}
+    PasswordAuthentication {{ openssh_client_password_authentication }}
+
+    GSSAPIAuthentication {{ openssh_client_gssapi_authentication }}
+    GSSAPIDelegateCredentials {{ openssh_client_gssapi_delegate_credentials }}
+
+    Tunnel no
+    PermitLocalCommand no
+    UseRoaming no
+
+    Compression {{ openssh_compression }}
