@@ -521,7 +521,7 @@ List of addresses to bind to
 ```YAML
 openssh_listen_addresses:
   - 0.0.0.0
-  - ':':
+  - '::'
 ```
 
 ### openssh_log_level
