@@ -88,6 +88,18 @@
   tags:
     - openssh
 
+- name: Debug failing tests
+  notify:
+    - Reload openssh
+  template:
+    src: config.j2
+    dest: /etc/ssh/sshd_config
+    owner: root
+    group: root
+    mode: u=rw,g=,o=
+  tags:
+    - openssh
+
 - name: Write server config
   notify:
     - Reload openssh
