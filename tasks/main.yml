@@ -1,4 +1,4 @@
-# Standards: 0.1
+# Standards: 1.2
 ---
 - name: Create required dirs
   loop: '{{ openssh_general_dirs + openssh_extra_dirs }}'
@@ -85,6 +85,18 @@
   when: openssh_register_moduli.stdout | default(False)
   changed_when: openssh_register_moduli.stdout | default(False)
   shell: awk '$5 >= {{ openssh_moduli_minimum }}' /etc/ssh/moduli > /etc/ssh/moduli.new; [ -r /etc/ssh/moduli.new -a -s /etc/ssh/moduli.new ] && mv /etc/ssh/moduli.new /etc/ssh/moduli || true
+  tags:
+    - openssh
+
+- name: Debug failing tests
+  notify:
+    - Reload openssh
+  template:
+    src: config.j2
+    dest: /etc/ssh/sshd_config
+    owner: root
+    group: root
+    mode: u=rw,g=,o=
   tags:
     - openssh
 

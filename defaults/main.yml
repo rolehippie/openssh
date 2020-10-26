@@ -1,4 +1,4 @@
-# Standards: 0.1
+# Standards: 1.2
 ---
 openssh_general_dirs: []
 
@@ -24,7 +24,7 @@ openssh_address_family: any
 # @var openssh_listen_addresses:description: List of addresses to bind to
 openssh_listen_addresses:
   - 0.0.0.0
-  - ::
+  - "::"
 
 # @var openssh_valid_ciphers:description: List of ciphers accepted by the server
 openssh_valid_ciphers:
