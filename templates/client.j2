@@ -17,17 +17,17 @@ Host *
     MACs {{ openssh_valid_macs | join(',') }}
     KexAlgorithms {{ openssh_valid_kex | join(',') }}
 
-    ForwardAgent {{ openssh_client_allow_agent_forwarding }}
-    ForwardX11 {{ openssh_client_x11_forwarding }}
+    ForwardAgent {{ 'yes' if openssh_client_allow_agent_forwarding is sameas true else 'no' if openssh_client_allow_agent_forwarding is sameas false else openssh_client_allow_agent_forwarding }}
+    ForwardX11 {{ 'yes' if openssh_client_x11_forwarding is sameas true else 'no' if openssh_client_x11_forwarding is sameas false else openssh_client_x11_forwarding }}
 
-    HostbasedAuthentication {{ openssh_client_hostbased_authentication }}
-    PasswordAuthentication {{ openssh_client_password_authentication }}
+    HostbasedAuthentication {{ 'yes' if openssh_client_hostbased_authentication is sameas true else 'no' if openssh_client_hostbased_authentication is sameas false else openssh_client_hostbased_authentication }}
+    PasswordAuthentication {{ 'yes' if openssh_client_password_authentication is sameas true else 'no' if openssh_client_password_authentication is sameas false else openssh_client_password_authentication }}
 
-    GSSAPIAuthentication {{ openssh_client_gssapi_authentication }}
-    GSSAPIDelegateCredentials {{ openssh_client_gssapi_delegate_credentials }}
+    GSSAPIAuthentication {{ 'yes' if openssh_client_gssapi_authentication is sameas true else 'no' if openssh_client_gssapi_authentication is sameas false else openssh_client_gssapi_authentication }}
+    GSSAPIDelegateCredentials {{ 'yes' if openssh_client_gssapi_delegate_credentials is sameas true else 'no' if openssh_client_gssapi_delegate_credentials is sameas false else openssh_client_gssapi_delegate_credentials }}
 
     Tunnel no
     PermitLocalCommand no
     UseRoaming no
 
-    Compression {{ openssh_compression }}
+    Compression {{ 'yes' if openssh_compression is sameas true else 'no' if openssh_compression is sameas false else openssh_compression }}

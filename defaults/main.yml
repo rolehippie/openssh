@@ -64,28 +64,28 @@ openssh_deny_groups: []
 openssh_allow_groups: []
 
 # @var openssh_use_pam:description: Use PAM
-openssh_use_pam: "yes"
+openssh_use_pam: True
 
 # @var openssh_login_grace_time:description: Login grace time
 openssh_login_grace_time: 30s
 
 # @var openssh_permit_root_login:description: Permit root login
-openssh_permit_root_login: "no"
+openssh_permit_root_login: False
 
 # @var openssh_pubkey_authentication:description: Enable pubkey authentication
-openssh_pubkey_authentication: "yes"
+openssh_pubkey_authentication: True
 
 # @var openssh_strict_modes:description: Enable strict mode
-openssh_strict_modes: "yes"
+openssh_strict_modes: True
 
 # @var openssh_ignore_rhosts:description: Ignore rhosts
-openssh_ignore_rhosts: "yes"
+openssh_ignore_rhosts: True
 
 # @var openssh_ignore_user_known_hosts:description: Ignore user known hosts
-openssh_ignore_user_known_hosts: "yes"
+openssh_ignore_user_known_hosts: True
 
 # @var openssh_hostbased_authentication:description: Hostbased authentication
-openssh_hostbased_authentication: "no"
+openssh_hostbased_authentication: False
 
 # @var openssh_max_auth_tries:description: Max allowed authentication tries
 openssh_max_auth_tries: 3
@@ -107,13 +107,13 @@ openssh_revoked_keys: []
 openssh_revoked_keys_file: /etc/ssh/revoked_keys
 
 # @var openssh_password_authentication:description: Enable password authentication
-openssh_password_authentication: "no"
+openssh_password_authentication: False
 
 # @var openssh_permit_empty_passwords:description: Permit empty passwords
-openssh_permit_empty_passwords: "no"
+openssh_permit_empty_passwords: False
 
 # @var openssh_challenge_response_authentication:description: Challenge response authentication
-openssh_challenge_response_authentication: "no"
+openssh_challenge_response_authentication: False
 
 # @var openssh_trusted_user_ca_keys_file:description: Path to trusted user ca keys file
 # @var openssh_trusted_user_ca_keys_file:example: $ "/etc/ssh/trusted_user_ca_keys"
@@ -146,31 +146,31 @@ openssh_authorized_principals_file: none
 openssh_authorized_principals: []
 
 # @var openssh_kerberos_authentication:description: Enable kerberos authentication
-openssh_kerberos_authentication: "no"
+openssh_kerberos_authentication: False
 
 # @var openssh_kerberos_or_local_passwd:description: Kerberos or local passwwd
-openssh_kerberos_or_local_passwd: "no"
+openssh_kerberos_or_local_passwd: False
 
 # @var openssh_kerberos_ticket_cleanup:description: Kerberos ticket cleanup
-openssh_kerberos_ticket_cleanup: "yes"
+openssh_kerberos_ticket_cleanup: True
 
 # @var openssh_kerberos_get_afs_token:description: Kerberos get afs token
-openssh_kerberos_get_afs_token: "no"
+openssh_kerberos_get_afs_token: False
 
 # @var openssh_gssapi_authentication:description: Enable GSSAP authentication
-openssh_gssapi_authentication: "no"
+openssh_gssapi_authentication: False
 
 # @var openssh_gssapi_cleanup_credentials:description: GSSAPI cleanup credentials
-openssh_gssapi_cleanup_credentials: "yes"
+openssh_gssapi_cleanup_credentials: True
 
 # @var openssh_gssapi_strict_accept_or_check:description: GSSAPI strict accept or check
-openssh_gssapi_strict_accept_or_check: "yes"
+openssh_gssapi_strict_accept_or_check: True
 
 # @var openssh_gssapi_key_exchange:description: GSSAP key exchange
-openssh_gssapi_key_exchange: "no"
+openssh_gssapi_key_exchange: False
 
 # @var openssh_tcp_keep_alive:description: Keep TCP alive
-openssh_tcp_keep_alive: "no"
+openssh_tcp_keep_alive: False
 
 # @var openssh_client_alive_interval:description: Client alive interval
 openssh_client_alive_interval: 300
@@ -179,25 +179,25 @@ openssh_client_alive_interval: 300
 openssh_client_alive_count_max: 3
 
 # @var openssh_permit_tunnel:description: Permit tunnels
-openssh_permit_tunnel: "no"
+openssh_permit_tunnel: False
 
 # @var openssh_allow_agent_forwarding:description: Allow agent forwarding
-openssh_allow_agent_forwarding: "yes"
+openssh_allow_agent_forwarding: True
 
 # @var openssh_allow_tcp_forwarding:description: Allow TCP forwarding
-openssh_allow_tcp_forwarding: "yes"
+openssh_allow_tcp_forwarding: True
 
 # @var openssh_gateway_ports:description: Allow gateway ports
-openssh_gateway_ports: "no"
+openssh_gateway_ports: False
 
 # @var openssh_x11_forwarding:description: Allow X11 forwarding
-openssh_x11_forwarding: "no"
+openssh_x11_forwarding: False
 
 # @var openssh_x11_use_localhost:description: Use localhost for X11
-openssh_x11_use_localhost: "yes"
+openssh_x11_use_localhost: True
 
 # @var openssh_permit_user_environment:description: Permit user environment
-openssh_permit_user_environment: "no"
+openssh_permit_user_environment: False
 
 # @var openssh_accept_env_vars:description: List of accepted environment variables
 openssh_accept_env_vars:
@@ -205,16 +205,16 @@ openssh_accept_env_vars:
   - LC_*
 
 # @var openssh_compression:description: Enable compression
-openssh_compression: "no"
+openssh_compression: False
 
 # @var openssh_use_dns:description: Use DNS
-openssh_use_dns: "yes"
+openssh_use_dns: True
 
 # @var openssh_print_motd:description: Print a message of the day
-openssh_print_motd: "no"
+openssh_print_motd: False
 
 # @var openssh_print_last_log:description: Print last login
-openssh_print_last_log: "yes"
+openssh_print_last_log: True
 
 # @var openssh_banner:description: Enable or disable a banner
 openssh_banner: none
@@ -288,7 +288,7 @@ openssh_client_password_authentication: "{{ openssh_password_authentication }}"
 openssh_client_gssapi_authentication: "{{ openssh_gssapi_authentication }}"
 
 # @var openssh_client_gssapi_delegate_credentials:description: Delegate GSSAPI credentials for client connections
-openssh_client_gssapi_delegate_credentials: "no"
+openssh_client_gssapi_delegate_credentials: False
 
 # @var openssh_moduli_minimum:description: Minimum size of allowd primes
 openssh_moduli_minimum: 2048

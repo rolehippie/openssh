@@ -28,23 +28,23 @@ DenyGroups {{ openssh_deny_groups | join(' ') }}
 {% if openssh_allow_groups | default(False) %}
 AllowGroups {{ openssh_allow_groups | join(' ') }}
 {% endif %}
-UsePAM {{ openssh_use_pam }}
+UsePAM {{ 'yes' if openssh_use_pam is sameas true else 'no' if openssh_use_pam is sameas false else openssh_use_pam }}
 LoginGraceTime {{ openssh_login_grace_time }}
-PermitRootLogin {{ openssh_permit_root_login }}
-PubkeyAuthentication {{ openssh_pubkey_authentication }}
-StrictModes {{ openssh_strict_modes }}
-IgnoreRhosts {{ openssh_ignore_rhosts }}
-IgnoreUserKnownHosts {{ openssh_ignore_user_known_hosts }}
-HostbasedAuthentication {{ openssh_hostbased_authentication }}
+PermitRootLogin {{ 'yes' if openssh_permit_root_login is sameas true else 'no' if openssh_permit_root_login is sameas false else openssh_permit_root_login }}
+PubkeyAuthentication {{ 'yes' if openssh_pubkey_authentication is sameas true else 'no' if openssh_pubkey_authentication is sameas false else openssh_pubkey_authentication }}
+StrictModes {{ 'yes' if openssh_strict_modes is sameas true else 'no' if openssh_strict_modes is sameas false else openssh_strict_modes }}
+IgnoreRhosts {{ 'yes' if openssh_ignore_rhosts is sameas true else 'no' if openssh_ignore_rhosts is sameas false else openssh_ignore_rhosts }}
+IgnoreUserKnownHosts {{ 'yes' if openssh_ignore_user_known_hosts is sameas true else 'no' if openssh_ignore_user_known_hosts is sameas false else openssh_ignore_user_known_hosts }}
+HostbasedAuthentication {{ 'yes' if openssh_hostbased_authentication is sameas true else 'no' if openssh_hostbased_authentication is sameas false else openssh_hostbased_authentication }}
 MaxAuthTries {{ openssh_max_auth_tries }}
 MaxSessions {{ openssh_max_sessions }}
 MaxStartups {{ openssh_max_startups }}
 
 AuthorizedKeysFile {{ openssh_authorized_keys_file | join(' ') }}
 RevokedKeys {{ openssh_revoked_keys_file }}
-PasswordAuthentication {{ openssh_password_authentication }}
-PermitEmptyPasswords {{ openssh_permit_empty_passwords }}
-ChallengeResponseAuthentication {{ openssh_challenge_response_authentication }}
+PasswordAuthentication {{ 'yes' if openssh_password_authentication is sameas true else 'no' if openssh_password_authentication is sameas false else openssh_password_authentication }}
+PermitEmptyPasswords {{ 'yes' if openssh_permit_empty_passwords is sameas true else 'no' if openssh_permit_empty_passwords is sameas false else openssh_permit_empty_passwords }}
+ChallengeResponseAuthentication {{ 'yes' if openssh_challenge_response_authentication is sameas true else 'no' if openssh_challenge_response_authentication is sameas false else openssh_challenge_response_authentication }}
 {% if openssh_trusted_user_ca_keys_file | default(False) %}
 
 TrustedUserCAKeys {{ openssh_trusted_user_ca_keys_file }}
@@ -54,34 +54,34 @@ AuthorizedPrincipalsFile {{ openssh_authorized_principals_file }}
 {% endif %}
 {% if openssh_kerberos_authentication | default('no') == 'yes' %}
 
-KerberosAuthentication {{ openssh_kerberos_authentication }}
-KerberosOrLocalPasswd {{ openssh_kerberos_or_local_passwd }}
-KerberosTicketCleanup {{ openssh_kerberos_ticket_cleanup }}
-KerberosGetAFSToken {{ openssh_kerberos_get_afs_token }}
+KerberosAuthentication {{ 'yes' if openssh_kerberos_authentication is sameas true else 'no' if openssh_kerberos_authentication is sameas false else openssh_kerberos_authentication }}
+KerberosOrLocalPasswd {{ 'yes' if openssh_kerberos_or_local_passwd is sameas true else 'no' if openssh_kerberos_or_local_passwd is sameas false else openssh_kerberos_or_local_passwd }}
+KerberosTicketCleanup {{ 'yes' if openssh_kerberos_ticket_cleanup is sameas true else 'no' if openssh_kerberos_ticket_cleanup is sameas false else openssh_kerberos_ticket_cleanup }}
+KerberosGetAFSToken {{ 'yes' if openssh_kerberos_get_afs_token is sameas true else 'no' if openssh_kerberos_get_afs_token is sameas false else openssh_kerberos_get_afs_token }}
 
-GSSAPIAuthentication {{ openssh_gssapi_authentication }}
-GSSAPICleanupCredentials{{ openssh_gssapi_cleanup_credentials }}
-GSSAPIStrictAcceptorCheck{{ openssh_gssapi_strict_accept_or_check }}
-GSSAPIKeyExchange{{ openssh_gssapi_key_exchange }}
+GSSAPIAuthentication {{ 'yes' if openssh_gssapi_authentication is sameas true else 'no' if openssh_gssapi_authentication is sameas false else openssh_gssapi_authentication }}
+GSSAPICleanupCredentials{{ 'yes' if openssh_gssapi_cleanup_credentials is sameas true else 'no' if openssh_gssapi_cleanup_credentials is sameas false else openssh_gssapi_cleanup_credentials }}
+GSSAPIStrictAcceptorCheck{{ 'yes' if openssh_gssapi_strict_accept_or_check is sameas true else 'no' if openssh_gssapi_strict_accept_or_check is sameas false else openssh_gssapi_strict_accept_or_check }}
+GSSAPIKeyExchange{{ 'yes' if openssh_gssapi_key_exchange is sameas true else 'no' if openssh_gssapi_key_exchange is sameas false else openssh_gssapi_key_exchange }}
 {% endif %}
 
-TCPKeepAlive {{ openssh_tcp_keep_alive }}
+TCPKeepAlive {{ 'yes' if openssh_tcp_keep_alive is sameas true else 'no' if openssh_tcp_keep_alive is sameas false else openssh_tcp_keep_alive }}
 ClientAliveInterval {{ openssh_client_alive_interval }}
 ClientAliveCountMax {{ openssh_client_alive_count_max }}
-PermitTunnel {{ openssh_permit_tunnel }}
-AllowAgentForwarding {{ openssh_allow_agent_forwarding }}
-AllowTcpForwarding {{ openssh_allow_tcp_forwarding }}
-GatewayPorts {{ openssh_gateway_ports }}
-X11Forwarding {{ openssh_x11_forwarding }}
-X11UseLocalhost {{ openssh_x11_use_localhost }}
+PermitTunnel {{ 'yes' if openssh_permit_tunnel is sameas true else 'no' if openssh_permit_tunnel is sameas false else openssh_permit_tunnel }}
+AllowAgentForwarding {{ 'yes' if openssh_allow_agent_forwarding is sameas true else 'no' if openssh_allow_agent_forwarding is sameas false else openssh_allow_agent_forwarding }}
+AllowTcpForwarding {{ 'yes' if openssh_allow_tcp_forwarding is sameas true else 'no' if openssh_allow_tcp_forwarding is sameas false else openssh_allow_tcp_forwarding }}
+GatewayPorts {{ 'yes' if openssh_gateway_ports is sameas true else 'no' if openssh_gateway_ports is sameas false else openssh_gateway_ports }}
+X11Forwarding {{ 'yes' if openssh_x11_forwarding is sameas true else 'no' if openssh_x11_forwarding is sameas false else openssh_x11_forwarding }}
+X11UseLocalhost {{ 'yes' if openssh_x11_use_localhost is sameas true else 'no' if openssh_x11_use_localhost is sameas false else openssh_x11_use_localhost }}
 
-PermitUserEnvironment {{ openssh_permit_user_environment }}
+PermitUserEnvironment {{ 'yes' if openssh_permit_user_environment is sameas true else 'no' if openssh_permit_user_environment is sameas false else openssh_permit_user_environment }}
 AcceptEnv {{ openssh_accept_env_vars | join(' ') }}
 
-Compression {{ openssh_compression }}
-UseDNS {{ openssh_use_dns }}
-PrintMotd {{ openssh_print_motd }}
-PrintLastLog {{ openssh_print_last_log }}
+Compression {{ 'yes' if openssh_compression is sameas true else 'no' if openssh_compression is sameas false else openssh_compression }}
+UseDNS {{ 'yes' if openssh_use_dns is sameas true else 'no' if openssh_use_dns is sameas false else openssh_use_dns }}
+PrintMotd {{ 'yes' if openssh_print_motd is sameas true else 'no' if openssh_print_motd is sameas false else openssh_print_motd }}
+PrintLastLog {{ 'yes' if openssh_print_last_log is sameas true else 'no' if openssh_print_last_log is sameas false else openssh_print_last_log }}
 Banner {{ openssh_banner }}
 
 Subsystem sftp internal-sftp

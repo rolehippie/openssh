@@ -126,7 +126,7 @@ Allow agent forwarding
 #### Default value
 
 ```YAML
-openssh_allow_agent_forwarding: yes
+openssh_allow_agent_forwarding: true
 ```
 
 ### openssh_allow_groups
@@ -146,7 +146,7 @@ Allow TCP forwarding
 #### Default value
 
 ```YAML
-openssh_allow_tcp_forwarding: yes
+openssh_allow_tcp_forwarding: true
 ```
 
 ### openssh_allow_users
@@ -232,7 +232,7 @@ Challenge response authentication
 #### Default value
 
 ```YAML
-openssh_challenge_response_authentication: no
+openssh_challenge_response_authentication: false
 ```
 
 ### openssh_client_alive_count_max
@@ -282,7 +282,7 @@ Delegate GSSAPI credentials for client connections
 #### Default value
 
 ```YAML
-openssh_client_gssapi_delegate_credentials: no
+openssh_client_gssapi_delegate_credentials: false
 ```
 
 ### openssh_client_hostbased_authentication
@@ -332,7 +332,7 @@ Enable compression
 #### Default value
 
 ```YAML
-openssh_compression: no
+openssh_compression: false
 ```
 
 ### openssh_deny_groups
@@ -370,7 +370,7 @@ Allow gateway ports
 #### Default value
 
 ```YAML
-openssh_gateway_ports: no
+openssh_gateway_ports: false
 ```
 
 ### openssh_general_dirs
@@ -388,7 +388,7 @@ Enable GSSAP authentication
 #### Default value
 
 ```YAML
-openssh_gssapi_authentication: no
+openssh_gssapi_authentication: false
 ```
 
 ### openssh_gssapi_cleanup_credentials
@@ -398,7 +398,7 @@ GSSAPI cleanup credentials
 #### Default value
 
 ```YAML
-openssh_gssapi_cleanup_credentials: yes
+openssh_gssapi_cleanup_credentials: true
 ```
 
 ### openssh_gssapi_key_exchange
@@ -408,7 +408,7 @@ GSSAP key exchange
 #### Default value
 
 ```YAML
-openssh_gssapi_key_exchange: no
+openssh_gssapi_key_exchange: false
 ```
 
 ### openssh_gssapi_strict_accept_or_check
@@ -418,7 +418,7 @@ GSSAPI strict accept or check
 #### Default value
 
 ```YAML
-openssh_gssapi_strict_accept_or_check: yes
+openssh_gssapi_strict_accept_or_check: true
 ```
 
 ### openssh_host_keys
@@ -449,7 +449,7 @@ Hostbased authentication
 #### Default value
 
 ```YAML
-openssh_hostbased_authentication: no
+openssh_hostbased_authentication: false
 ```
 
 ### openssh_ignore_rhosts
@@ -459,7 +459,7 @@ Ignore rhosts
 #### Default value
 
 ```YAML
-openssh_ignore_rhosts: yes
+openssh_ignore_rhosts: true
 ```
 
 ### openssh_ignore_user_known_hosts
@@ -469,7 +469,7 @@ Ignore user known hosts
 #### Default value
 
 ```YAML
-openssh_ignore_user_known_hosts: yes
+openssh_ignore_user_known_hosts: true
 ```
 
 ### openssh_kerberos_authentication
@@ -479,7 +479,7 @@ Enable kerberos authentication
 #### Default value
 
 ```YAML
-openssh_kerberos_authentication: no
+openssh_kerberos_authentication: false
 ```
 
 ### openssh_kerberos_get_afs_token
@@ -489,7 +489,7 @@ Kerberos get afs token
 #### Default value
 
 ```YAML
-openssh_kerberos_get_afs_token: no
+openssh_kerberos_get_afs_token: false
 ```
 
 ### openssh_kerberos_or_local_passwd
@@ -499,7 +499,7 @@ Kerberos or local passwwd
 #### Default value
 
 ```YAML
-openssh_kerberos_or_local_passwd: no
+openssh_kerberos_or_local_passwd: false
 ```
 
 ### openssh_kerberos_ticket_cleanup
@@ -509,7 +509,7 @@ Kerberos ticket cleanup
 #### Default value
 
 ```YAML
-openssh_kerberos_ticket_cleanup: yes
+openssh_kerberos_ticket_cleanup: true
 ```
 
 ### openssh_listen_addresses
@@ -648,7 +648,7 @@ Enable password authentication
 #### Default value
 
 ```YAML
-openssh_password_authentication: no
+openssh_password_authentication: false
 ```
 
 ### openssh_permit_empty_passwords
@@ -658,7 +658,7 @@ Permit empty passwords
 #### Default value
 
 ```YAML
-openssh_permit_empty_passwords: no
+openssh_permit_empty_passwords: false
 ```
 
 ### openssh_permit_root_login
@@ -668,7 +668,7 @@ Permit root login
 #### Default value
 
 ```YAML
-openssh_permit_root_login: no
+openssh_permit_root_login: false
 ```
 
 ### openssh_permit_tunnel
@@ -678,7 +678,7 @@ Permit tunnels
 #### Default value
 
 ```YAML
-openssh_permit_tunnel: no
+openssh_permit_tunnel: false
 ```
 
 ### openssh_permit_user_environment
@@ -688,7 +688,7 @@ Permit user environment
 #### Default value
 
 ```YAML
-openssh_permit_user_environment: no
+openssh_permit_user_environment: false
 ```
 
 ### openssh_port
@@ -708,7 +708,7 @@ Print last login
 #### Default value
 
 ```YAML
-openssh_print_last_log: yes
+openssh_print_last_log: true
 ```
 
 ### openssh_print_motd
@@ -718,7 +718,7 @@ Print a message of the day
 #### Default value
 
 ```YAML
-openssh_print_motd: no
+openssh_print_motd: false
 ```
 
 ### openssh_pubkey_authentication
@@ -728,7 +728,7 @@ Enable pubkey authentication
 #### Default value
 
 ```YAML
-openssh_pubkey_authentication: yes
+openssh_pubkey_authentication: true
 ```
 
 ### openssh_remote_hosts
@@ -819,7 +819,7 @@ Enable strict mode
 #### Default value
 
 ```YAML
-openssh_strict_modes: yes
+openssh_strict_modes: true
 ```
 
 ### openssh_syslog_facility
@@ -839,7 +839,7 @@ Keep TCP alive
 #### Default value
 
 ```YAML
-openssh_tcp_keep_alive: no
+openssh_tcp_keep_alive: false
 ```
 
 ### openssh_trusted_user_ca_keys
@@ -875,7 +875,7 @@ Use DNS
 #### Default value
 
 ```YAML
-openssh_use_dns: yes
+openssh_use_dns: true
 ```
 
 ### openssh_use_pam
@@ -885,7 +885,7 @@ Use PAM
 #### Default value
 
 ```YAML
-openssh_use_pam: yes
+openssh_use_pam: true
 ```
 
 ### openssh_valid_ciphers
@@ -935,7 +935,7 @@ Allow X11 forwarding
 #### Default value
 
 ```YAML
-openssh_x11_forwarding: no
+openssh_x11_forwarding: false
 ```
 
 ### openssh_x11_use_localhost
@@ -945,7 +945,7 @@ Use localhost for X11
 #### Default value
 
 ```YAML
-openssh_x11_use_localhost: yes
+openssh_x11_use_localhost: true
 ```
 
 ## Dependencies
