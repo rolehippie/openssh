@@ -1,6 +1,8 @@
 # Standards: 1.2
 ---
-openssh_general_dirs: []
+openssh_general_dirs:
+  - path: /run/sshd
+    mode: 'u=rwx,g=,o='
 
 openssh_extra_dirs: []
 
