@@ -13,7 +13,6 @@ openssh_extra_dirs: []
 # @end
 openssh_host_keys:
   - name: ssh_host_ed25519_key
-  - name: ssh_host_rsa_key
 
 # @var openssh_port:description: Port to bind the daemon to
 openssh_port: 22
@@ -44,6 +43,7 @@ openssh_valid_macs:
 # @var openssh_valid_kex:description: Map of kexs accepted by the server
 openssh_valid_kex:
   - curve25519-sha256@libssh.org
+  - diffie-hellman-group-exchange-sha256
 
 # @var openssh_syslog_facility:description: Syslog facility
 openssh_syslog_facility: AUTHPRIV
