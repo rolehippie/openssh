@@ -4,6 +4,11 @@
   include_vars: "{{ ansible_os_family }}.yml"
   tags: always
 
+- name: Ensure openssh is installed
+  package:
+    name: openssh-server
+    state: present
+
 - name: Create required dirs
   loop: '{{ openssh_general_dirs + openssh_extra_dirs }}'
   loop_control:
