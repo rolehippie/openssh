@@ -1,9 +1,27 @@
 # Standards: 1.2
 ---
+# @var openssh_general_dirs:description: List of general directories to create
+# @var openssh_general_dirs:example: >
+# openssh_general_dirs:
+#   - path: /path/to/dir
+#     owner: root
+#     group: root
+#     mode: u=rwx,g=,o=
+#     state: present
+# @end
 openssh_general_dirs:
   - path: /run/sshd
-    mode: 'u=rwx,g=,o='
+    mode: u=rwx,g=,o=
 
+# @var openssh_extra_dirs:description: List of extra directories to create
+# @var openssh_extra_dirs:example: >
+# openssh_extra_dirs:
+#   - path: /path/to/dir
+#     owner: root
+#     group: root
+#     mode: u=rwx,g=,o=
+#     state: present
+# @end
 openssh_extra_dirs: []
 
 # @var openssh_host_keys:description: List of ports to listen to

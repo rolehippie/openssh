@@ -357,10 +357,23 @@ openssh_deny_users: []
 
 ### openssh_extra_dirs
 
+List of extra directories to create
+
 #### Default value
 
 ```YAML
 openssh_extra_dirs: []
+```
+
+#### Example usage
+
+```YAML
+openssh_extra_dirs:
+  - path: /path/to/dir
+    owner: root
+    group: root
+    mode: u=rwx,g=,o=
+    state: present
 ```
 
 ### openssh_gateway_ports
@@ -375,12 +388,25 @@ openssh_gateway_ports: false
 
 ### openssh_general_dirs
 
+List of general directories to create
+
 #### Default value
 
 ```YAML
 openssh_general_dirs:
   - path: /run/sshd
     mode: u=rwx,g=,o=
+```
+
+#### Example usage
+
+```YAML
+openssh_general_dirs:
+  - path: /path/to/dir
+    owner: root
+    group: root
+    mode: u=rwx,g=,o=
+    state: present
 ```
 
 ### openssh_gssapi_authentication
