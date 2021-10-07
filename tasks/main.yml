@@ -8,6 +8,8 @@
   package:
     name: openssh-server
     state: present
+  tags:
+    - openssh
 
 - name: Create required dirs
   loop: '{{ openssh_general_dirs + openssh_extra_dirs }}'
