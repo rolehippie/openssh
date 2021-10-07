@@ -20,11 +20,16 @@
 # None
 # @end
 galaxy_info:
+  role_name: openssh
+  namespace: rolehippie
   author: Thomas Boerger
   description: Ansible role to configure a hardened openSSH daemon
   license: Apache-2.0
   min_ansible_version: 2.10
   platforms:
+    - name: EL
+      versions:
+        - 7
     - name: Ubuntu
       versions:
         - bionic

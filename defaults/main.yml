@@ -1,6 +1,8 @@
 # Standards: 1.2
 ---
-openssh_general_dirs: []
+openssh_general_dirs:
+  - path: /run/sshd
+    mode: 'u=rwx,g=,o='
 
 openssh_extra_dirs: []
 
@@ -44,6 +46,7 @@ openssh_valid_macs:
 # @var openssh_valid_kex:description: Map of kexs accepted by the server
 openssh_valid_kex:
   - curve25519-sha256@libssh.org
+  - diffie-hellman-group-exchange-sha256
 
 # @var openssh_syslog_facility:description: Syslog facility
 openssh_syslog_facility: AUTHPRIV
