@@ -1,5 +1,5 @@
----
 # Standards: 1.2
+---
 openssh_service: sshd
 
 ...
