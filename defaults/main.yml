@@ -15,6 +15,7 @@ openssh_extra_dirs: []
 # @end
 openssh_host_keys:
   - name: ssh_host_ed25519_key
+  - name: ssh_host_rsa_key
 
 # @var openssh_port:description: Port to bind the daemon to
 openssh_port: 22
