@@ -378,7 +378,9 @@ openssh_gateway_ports: false
 #### Default value
 
 ```YAML
-openssh_general_dirs: []
+openssh_general_dirs:
+  - path: /run/sshd
+    mode: u=rwx,g=,o=
 ```
 
 ### openssh_gssapi_authentication
@@ -913,6 +915,7 @@ Map of kexs accepted by the server
 ```YAML
 openssh_valid_kex:
   - curve25519-sha256@libssh.org
+  - diffie-hellman-group-exchange-sha256
 ```
 
 ### openssh_valid_macs
