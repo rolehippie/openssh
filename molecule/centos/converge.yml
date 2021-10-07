@@ -14,7 +14,7 @@
           AAAEC5lSJDIzzhVGdd8iECCwpl3xP4HAhz+avFvcnboVs3kP5xoBRbseWApMsBqa0snzxs
           ccX04nbfSnKA8F3LH32XAAAAC3Jvb3RAY2VudG9zAQI=
           -----END OPENSSH PRIVATE KEY-----
-        pub: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP5xoBRbseWApMsBqa0snzxsccX04nbfSnKA8F3LH32X root@centos'
+        pub: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP5xoBRbseWApMsBqa0snzxsccX04nbfSnKA8F3LH32X root@centos
 
   roles:
     - role: openssh

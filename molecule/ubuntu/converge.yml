@@ -2,6 +2,20 @@
 ---
 - name: Converge
   hosts: all
+
+  vars:
+    openssh_host_keys:
+      - name: ssh_host_ed25519_key
+        key: |
+          -----BEGIN OPENSSH PRIVATE KEY-----
+          b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW
+          QyNTUxOQAAACD+caAUW7HlgKTLAamtLJ88bHHF9OJ230pygPBdyx99lwAAAJCsmTyjrJk8
+          owAAAAtzc2gtZWQyNTUxOQAAACD+caAUW7HlgKTLAamtLJ88bHHF9OJ230pygPBdyx99lw
+          AAAEC5lSJDIzzhVGdd8iECCwpl3xP4HAhz+avFvcnboVs3kP5xoBRbseWApMsBqa0snzxs
+          ccX04nbfSnKA8F3LH32XAAAAC3Jvb3RAY2VudG9zAQI=
+          -----END OPENSSH PRIVATE KEY-----
+        pub: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP5xoBRbseWApMsBqa0snzxsccX04nbfSnKA8F3LH32X root@ubuntu
+
   roles:
     - role: openssh
 
