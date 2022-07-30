@@ -2,4 +2,8 @@
 ---
 openssh_service: sshd
 
+openssh_default_dirs:
+  - path: /run/sshd
+    mode: u=rwx,g=,o=
+
 ...

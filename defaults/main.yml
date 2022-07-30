@@ -9,9 +9,7 @@
 #     mode: u=rwx,g=,o=
 #     state: present
 # @end
-openssh_general_dirs:
-  - path: /run/sshd
-    mode: u=rwx,g=,o=
+openssh_general_dirs: "{{ openssh_default_dirs }}"
 
 # @var openssh_extra_dirs:description: List of extra directories to create
 # @var openssh_extra_dirs:example: >
