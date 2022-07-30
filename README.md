@@ -392,9 +392,7 @@ List of general directories to create
 #### Default value
 
 ```YAML
-openssh_general_dirs:
-  - path: /run/sshd
-    mode: u=rwx,g=,o=
+openssh_general_dirs: '{{ openssh_default_dirs }}'
 ```
 
 #### Example usage
