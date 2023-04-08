@@ -7,7 +7,7 @@
 # [![Readme Workflow](https://github.com/rolehippie/openssh/actions/workflows/readme.yml/badge.svg)](https://github.com/rolehippie/openssh/actions/workflows/readme.yml)
 # [![Galaxy Workflow](https://github.com/rolehippie/openssh/actions/workflows/galaxy.yml/badge.svg)](https://github.com/rolehippie/openssh/actions/workflows/galaxy.yml)
 # [![License: Apache-2.0](https://img.shields.io/github/license/rolehippie/openssh)](https://github.com/rolehippie/openssh/blob/master/LICENSE)
-# [![Ansible Role](https://img.shields.io/ansible/role/51437)](https://galaxy.ansible.com/rolehippie/openssh)
+# [![Ansible Role](https://img.shields.io/badge/role-rolehippie.openssh-blue)](https://galaxy.ansible.com/rolehippie/openssh)
 #
 # Ansible role to configure a hardened openSSH daemon.
 #
