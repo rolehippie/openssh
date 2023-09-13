@@ -2,7 +2,7 @@
 ---
 - name: Prepare
   hosts: all
-  gather_facts: False
+  gather_facts: True
 
   tasks:
     - name: Wait for aptlock
