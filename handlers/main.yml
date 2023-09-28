@@ -2,7 +2,7 @@
 ---
 - name: Reload openssh
   systemd:
-    name: ssh
+    name: "{{ openssh_service }}"
     state: reloaded
     daemon_reload: True
 
