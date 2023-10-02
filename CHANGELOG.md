@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://github.com/rolehippie/openssh/compare/v1.0.0...v1.1.0) (2023-10-02)
+
+
+### Features
+
+* drop testing for centos 7 ([26bca05](https://github.com/rolehippie/openssh/commit/26bca05f6874ccbd2ce9b3d47e32e3dfe63fd07c))
+
+
+### Bugfixes
+
+* use right service name on centos ([41b444d](https://github.com/rolehippie/openssh/commit/41b444da5d0cfaa3f473c702124adf65d09c6aff))
+
 ## 1.0.0 (2023-01-20)
 
 
