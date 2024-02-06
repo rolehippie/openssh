@@ -1,10 +1,10 @@
 ---
 - name: Include platform variables
-  include_vars: "{{ ansible_os_family }}.yml"
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
   tags: always
 
 - name: Install openssh package
-  package:
+  ansible.builtin.package:
     name: openssh-server
     state: present
   tags:
@@ -14,7 +14,7 @@
   loop: '{{ openssh_general_dirs + openssh_extra_dirs }}'
   loop_control:
     label: '{{ item.path }}'
-  file:
+  ansible.builtin.file:
     path: "{{ item.path }}"
     owner: "{{ item.owner | default('root') }}"
     group: "{{ item.group | default('root') }}"
@@ -31,7 +31,7 @@
     label: '{{ item.name }}'
   diff: False
   when: item.state | default('present') == 'present' and item.key | default(False)
-  copy:
+  ansible.builtin.copy:
     content: "{{ item.key | trim }}\n"
     dest: "/etc/ssh/{{ item.name }}"
     mode: u=rw,g=,o=
@@ -46,7 +46,7 @@
     label: '{{ item.name }}'
   diff: False
   when: item.state | default('present') == 'absent'
-  file:
+  ansible.builtin.file:
     path: "/etc/ssh/{{ item.name }}"
     state: absent
   tags:
@@ -60,7 +60,7 @@
     label: '{{ item.name }}'
   diff: False
   when: item.state | default('present') == 'present' and item.pub | default(False)
-  copy:
+  ansible.builtin.copy:
     content: "{{ item.pub | trim }}\n"
     dest: "/etc/ssh/{{ item.name }}.pub"
     mode: u=rw,g=r,o=r
@@ -75,7 +75,7 @@
     label: '{{ item.name }}'
   diff: False
   when: item.state | default('present') == 'absent'
-  file:
+  ansible.builtin.file:
     path: "/etc/ssh/{{ item.name }}.pub"
     state: absent
   tags:
@@ -85,7 +85,7 @@
   register: openssh_register_moduli
   changed_when: False
   check_mode: False
-  shell: awk '$5 < {{ openssh_moduli_minimum }}' /etc/ssh/moduli
+  ansible.builtin.shell: awk '$5 < {{ openssh_moduli_minimum }}' /etc/ssh/moduli
   tags:
     - openssh
 
@@ -94,14 +94,14 @@
     - Reload openssh
   when: openssh_register_moduli.stdout | default(False)
   changed_when: openssh_register_moduli.stdout | default(False)
-  shell: awk '$5 >= {{ openssh_moduli_minimum }}' /etc/ssh/moduli > /etc/ssh/moduli.new; [ -r /etc/ssh/moduli.new -a -s /etc/ssh/moduli.new ] && mv /etc/ssh/moduli.new /etc/ssh/moduli || true
+  ansible.builtin.shell: awk '$5 >= {{ openssh_moduli_minimum }}' /etc/ssh/moduli > /etc/ssh/moduli.new; [ -r /etc/ssh/moduli.new -a -s /etc/ssh/moduli.new ] && mv /etc/ssh/moduli.new /etc/ssh/moduli || true
   tags:
     - openssh
 
 - name: Write server config
   notify:
     - Reload openssh
-  template:
+  ansible.builtin.template:
     src: config.j2
     dest: /etc/ssh/sshd_config
     owner: root
@@ -112,7 +112,7 @@
     - openssh
 
 - name: Write client config
-  template:
+  ansible.builtin.template:
     src: client.j2
     dest: /etc/ssh/ssh_config
     owner: root
@@ -125,7 +125,7 @@
   notify:
     - Reload openssh
   when: openssh_revoked_keys_file | default(False)
-  copy:
+  ansible.builtin.copy:
     content: "{{ openssh_revoked_keys | join('\n') }}"
     dest: "{{ openssh_revoked_keys_file }}"
     owner: root
@@ -138,7 +138,7 @@
   notify:
     - Reload openssh
   when: openssh_trusted_user_ca_keys_file | default(False)
-  copy:
+  ansible.builtin.copy:
     content: "{{ openssh_trusted_user_ca_keys | join('\n') }}"
     dest: "{{ openssh_trusted_user_ca_keys_file }}"
     owner: root
@@ -152,7 +152,7 @@
   loop_control:
     label: "{{ item.path | dirname }}"
   when: item.state | default('present') == 'present'
-  file:
+  ansible.builtin.file:
     path: "{{ item.path | dirname }}"
     mode: "{{ item.dirmode | default('u=rwx,g=,o=') }}"
     owner: "{{ item.dirowner | default('root') }}"
@@ -166,7 +166,7 @@
   loop_control:
     label: "{{ item.path }}"
   when: item.state | default('present') == 'present'
-  copy:
+  ansible.builtin.copy:
     content: "{{ item.principals | join('\n') }}"
     dest: "{{ item.path }}"
     mode: "{{ item.mode | default('u=rw,g=,o=') }}"
@@ -180,14 +180,14 @@
   loop_control:
     label: "{{ item.path }}"
   when: item.state | default('present') == 'absent'
-  file:
+  ansible.builtin.file:
     path: "{{ item.path }}"
     state: absent
   tags:
     - openssh
 
 - name: Disable dynamic motd
-  pamd:
+  community.general.pamd:
     name: sshd
     type: session
     control: optional
