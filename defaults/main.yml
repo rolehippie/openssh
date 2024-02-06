@@ -1,4 +1,3 @@
-# Standards: 1.2
 ---
 # @var openssh_general_dirs:description: List of general directories to create
 # @var openssh_general_dirs:example: >
