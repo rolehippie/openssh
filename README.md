@@ -993,7 +993,7 @@ openssh_x11_use_localhost: true
 
 ## Dependencies
 
-- None
+- [community.general](https://github.com/ansible-collections/community.general)
 
 ## License
 
