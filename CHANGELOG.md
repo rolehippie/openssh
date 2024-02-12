@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.0.0](https://github.com/rolehippie/openssh/compare/v1.1.0...v2.0.0) (2024-02-12)
+
+
+### Features
+
+* drop support for ubuntu 18.04 ([63e6d8e](https://github.com/rolehippie/openssh/commit/63e6d8e40f8d3f9a76c341913715ced008666f80))
+* used full qualified collection names ([4a53c10](https://github.com/rolehippie/openssh/commit/4a53c104bdf08ddf33372693d5039ad4ba321f1d))
+
+
+### Bugfixes
+
+* remove meta requirements and document used collections ([ddeaec7](https://github.com/rolehippie/openssh/commit/ddeaec70afba6ab161fb5d7ea8f159b59a822965))
+
 ## [1.1.0](https://github.com/rolehippie/openssh/compare/v1.0.0...v1.1.0) (2023-10-02)
 
 
