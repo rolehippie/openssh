@@ -986,8 +986,6 @@ openssh_x11_use_localhost: true
 
 ## Discovered Tags
 
-**_always_**
-
 **_openssh_**
 
 ## Dependencies
