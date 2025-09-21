@@ -1,11 +1,14 @@
 ---
 - name: Include platform variables
   ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
-  tags: always
+  tags:
+    - openssh
 
 - name: Install openssh package
+  loop:
+    - openssh-server
   ansible.builtin.package:
-    name: openssh-server
+    name: "{{ item }}"
     state: present
   tags:
     - openssh
@@ -16,10 +19,10 @@
     label: '{{ item.path }}'
   ansible.builtin.file:
     path: "{{ item.path }}"
-    owner: "{{ item.owner | default('root') }}"
-    group: "{{ item.group | default('root') }}"
-    mode: "{{ item.mode | default('u=rwx,g=rwx,o=') }}"
-    state: "{{ 'directory' if item.state | default('present') == 'present' else 'absent' }}"
+    owner: "{{ 'root' if item.owner is undefined else item.owner }}"
+    group: "{{ 'root' if item.group is undefined else item.group }}"
+    mode: "{{ 'u=rwx,g=rwx,o=' if item.mode is undefined else item.mode }}"
+    state: "{{ 'directory' if item.state is undefined or item.state == 'present' else item.state }}"
   tags:
     - openssh
 
@@ -29,8 +32,10 @@
   loop: '{{ openssh_host_keys }}'
   loop_control:
     label: '{{ item.name }}'
-  diff: False
-  when: item.state | default('present') == 'present' and item.key | default(False)
+  diff: false
+  when:
+    - true if item.state is undefined else item.state == 'present'
+    - false if item.key is undefined else (item.key | length > 0)
   ansible.builtin.copy:
     content: "{{ item.key | trim }}\n"
     dest: "/etc/ssh/{{ item.name }}"
@@ -44,8 +49,9 @@
   loop: '{{ openssh_host_keys }}'
   loop_control:
     label: '{{ item.name }}'
-  diff: False
-  when: item.state | default('present') == 'absent'
+  diff: false
+  when:
+    - false if item.state is undefined else item.state == 'absent'
   ansible.builtin.file:
     path: "/etc/ssh/{{ item.name }}"
     state: absent
@@ -58,8 +64,10 @@
   loop: '{{ openssh_host_keys }}'
   loop_control:
     label: '{{ item.name }}'
-  diff: False
-  when: item.state | default('present') == 'present' and item.pub | default(False)
+  diff: false
+  when:
+    - true if item.state is undefined else item.state == 'present'
+    - false if item.pub is undefined else (item.pub | length > 0)
   ansible.builtin.copy:
     content: "{{ item.pub | trim }}\n"
     dest: "/etc/ssh/{{ item.name }}.pub"
@@ -73,8 +81,9 @@
   loop: '{{ openssh_host_keys }}'
   loop_control:
     label: '{{ item.name }}'
-  diff: False
-  when: item.state | default('present') == 'absent'
+  diff: false
+  when:
+    - false if item.state is undefined else item.state == 'absent'
   ansible.builtin.file:
     path: "/etc/ssh/{{ item.name }}.pub"
     state: absent
@@ -83,8 +92,8 @@
 
 - name: Check small primes
   register: openssh_register_moduli
-  changed_when: False
-  check_mode: False
+  changed_when: false
+  check_mode: false
   ansible.builtin.shell: awk '$5 < {{ openssh_moduli_minimum }}' /etc/ssh/moduli
   tags:
     - openssh
@@ -92,8 +101,9 @@
 - name: Remove small primes
   notify:
     - Reload openssh
-  when: openssh_register_moduli.stdout | default(False)
-  changed_when: openssh_register_moduli.stdout | default(False)
+  when:
+    - openssh_register_moduli.stdout | length > 0
+  changed_when: openssh_register_moduli.stdout | length > 0
   ansible.builtin.shell: awk '$5 >= {{ openssh_moduli_minimum }}' /etc/ssh/moduli > /etc/ssh/moduli.new; [ -r /etc/ssh/moduli.new -a -s /etc/ssh/moduli.new ] && mv /etc/ssh/moduli.new /etc/ssh/moduli || true
   tags:
     - openssh
@@ -124,7 +134,8 @@
 - name: Write revoked keys
   notify:
     - Reload openssh
-  when: openssh_revoked_keys_file | default(False)
+  when:
+    - openssh_revoked_keys_file | length > 0
   ansible.builtin.copy:
     content: "{{ openssh_revoked_keys | join('\n') }}"
     dest: "{{ openssh_revoked_keys_file }}"
@@ -137,7 +148,8 @@
 - name: Write trusted CAs
   notify:
     - Reload openssh
-  when: openssh_trusted_user_ca_keys_file | default(False)
+  when:
+    - false if openssh_trusted_user_ca_keys_file is none else (openssh_trusted_user_ca_keys_file | length > 0)
   ansible.builtin.copy:
     content: "{{ openssh_trusted_user_ca_keys | join('\n') }}"
     dest: "{{ openssh_trusted_user_ca_keys_file }}"
@@ -151,7 +163,8 @@
   loop: "{{ openssh_authorized_principals }}"
   loop_control:
     label: "{{ item.path | dirname }}"
-  when: item.state | default('present') == 'present'
+  when:
+    - true if item.state is undefined else item.state == 'present'
   ansible.builtin.file:
     path: "{{ item.path | dirname }}"
     mode: "{{ item.dirmode | default('u=rwx,g=,o=') }}"
@@ -165,7 +178,8 @@
   loop: "{{ openssh_authorized_principals }}"
   loop_control:
     label: "{{ item.path }}"
-  when: item.state | default('present') == 'present'
+  when:
+    - true if item.state is undefined else item.state == 'present'
   ansible.builtin.copy:
     content: "{{ item.principals | join('\n') }}"
     dest: "{{ item.path }}"
@@ -179,7 +193,8 @@
   loop: "{{ openssh_authorized_principals }}"
   loop_control:
     label: "{{ item.path }}"
-  when: item.state | default('present') == 'absent'
+  when:
+    - false if item.state is undefined else item.state == 'absent'
   ansible.builtin.file:
     path: "{{ item.path }}"
     state: absent

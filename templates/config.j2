@@ -16,16 +16,16 @@ KexAlgorithms {{ openssh_valid_kex | join(',') }}
 SyslogFacility {{ openssh_syslog_facility }}
 LogLevel {{ openssh_log_level }}
 
-{% if openssh_deny_users | default(False) %}
+{% if openssh_deny_users | length > 0 %}
 DenyUsers {{ openssh_deny_users | join(' ') }}
 {% endif %}
-{% if openssh_allow_users | default(False) %}
+{% if openssh_allow_users | length > 0 %}
 AllowUsers {{ openssh_allow_users | join(' ') }}
 {% endif %}
-{% if openssh_deny_groups | default(False) %}
+{% if openssh_deny_groups | length > 0 %}
 DenyGroups {{ openssh_deny_groups | join(' ') }}
 {% endif %}
-{% if openssh_allow_groups | default(False) %}
+{% if openssh_allow_groups | length > 0 %}
 AllowGroups {{ openssh_allow_groups | join(' ') }}
 {% endif %}
 UsePAM {{ 'yes' if openssh_use_pam is sameas true else 'no' if openssh_use_pam is sameas false else openssh_use_pam }}
@@ -45,14 +45,14 @@ RevokedKeys {{ openssh_revoked_keys_file }}
 PasswordAuthentication {{ 'yes' if openssh_password_authentication is sameas true else 'no' if openssh_password_authentication is sameas false else openssh_password_authentication }}
 PermitEmptyPasswords {{ 'yes' if openssh_permit_empty_passwords is sameas true else 'no' if openssh_permit_empty_passwords is sameas false else openssh_permit_empty_passwords }}
 ChallengeResponseAuthentication {{ 'yes' if openssh_challenge_response_authentication is sameas true else 'no' if openssh_challenge_response_authentication is sameas false else openssh_challenge_response_authentication }}
-{% if openssh_trusted_user_ca_keys_file | default(False) %}
+{% if openssh_trusted_user_ca_keys_file is not none %}
 
 TrustedUserCAKeys {{ openssh_trusted_user_ca_keys_file }}
-{% if openssh_authorized_principals_file %}
+{% if openssh_authorized_principals_file is not none %}
 AuthorizedPrincipalsFile {{ openssh_authorized_principals_file }}
 {% endif %}
 {% endif %}
-{% if openssh_kerberos_authentication | default('no') == 'yes' %}
+{% if openssh_kerberos_authentication  %}
 
 KerberosAuthentication {{ 'yes' if openssh_kerberos_authentication is sameas true else 'no' if openssh_kerberos_authentication is sameas false else openssh_kerberos_authentication }}
 KerberosOrLocalPasswd {{ 'yes' if openssh_kerberos_or_local_passwd is sameas true else 'no' if openssh_kerberos_or_local_passwd is sameas false else openssh_kerberos_or_local_passwd }}
@@ -89,7 +89,7 @@ Subsystem sftp internal-sftp
 
 Match Group {{ openssh_sftp_group }}
     ForceCommand internal-sftp
-{% if openssh_sftp_chroot_directory | default(False) %}
+{% if openssh_sftp_chroot_directory | default(false) %}
     ChrootDirectory {{ openssh_sftp_chroot_directory }}
 {% endif %}
     PasswordAuthentication {{ 'yes' if openssh_sftp_password_authentication else 'no' }}
@@ -98,7 +98,7 @@ Match Group {{ openssh_sftp_group }}
     AllowTcpForwarding no
     X11Forwarding no
 {% endif %}
-{% if openssh_match_address | default(False) %}
+{% if openssh_match_address | length > 0 %}
 
 {% for item in openssh_match_address %}
 Match Address {{ item.address }}
@@ -107,7 +107,7 @@ Match Address {{ item.address }}
 {% endfor %}
 {% endfor %}
 {% endif %}
-{% if openssh_match_group | default(False) %}
+{% if openssh_match_group | length > 0 %}
 
 {% for item in openssh_match_group %}
 Match Group {{ item.group }}
@@ -116,7 +116,7 @@ Match Group {{ item.group }}
 {% endfor %}
 {% endfor %}
 {% endif %}
-{% if openssh_match_user | default(False) %}
+{% if openssh_match_user | length > 0 %}
 
 {% for item in openssh_match_user %}
 Match User {{ item.user }}

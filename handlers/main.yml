@@ -3,6 +3,6 @@
   ansible.builtin.systemd:
     name: "{{ openssh_service }}"
     state: reloaded
-    daemon_reload: True
+    daemon_reload: true
 
 ...
