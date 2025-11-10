@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.0](https://github.com/rolehippie/openssh/compare/v2.1.0...v3.0.0) (2025-11-10)
+
+
+### Features
+
+* **major:** update dependency community.general to v12 ([#29](https://github.com/rolehippie/openssh/issues/29)) ([fe66bc6](https://github.com/rolehippie/openssh/commit/fe66bc6142b9fa659e599fb3595ab1b94e9e1096))
+
 ## [2.1.0](https://github.com/rolehippie/openssh/compare/v2.0.0...v2.1.0) (2025-09-21)
 
 
