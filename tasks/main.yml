@@ -34,8 +34,8 @@
     label: '{{ item.name }}'
   diff: false
   when:
-    - true if item.state is undefined else item.state == 'present'
-    - false if item.key is undefined else (item.key | length > 0)
+    - item.state is not defined or item.state == 'present'
+    - item.key is defined and item.key | length > 0
   ansible.builtin.copy:
     content: "{{ item.key | trim }}\n"
     dest: "/etc/ssh/{{ item.name }}"
@@ -51,7 +51,7 @@
     label: '{{ item.name }}'
   diff: false
   when:
-    - false if item.state is undefined else item.state == 'absent'
+    - item.state is defined and item.state == 'absent'
   ansible.builtin.file:
     path: "/etc/ssh/{{ item.name }}"
     state: absent
@@ -66,8 +66,8 @@
     label: '{{ item.name }}'
   diff: false
   when:
-    - true if item.state is undefined else item.state == 'present'
-    - false if item.pub is undefined else (item.pub | length > 0)
+    - item.state is not defined or item.state == 'present'
+    - item.pub is defined and item.pub | length > 0
   ansible.builtin.copy:
     content: "{{ item.pub | trim }}\n"
     dest: "/etc/ssh/{{ item.name }}.pub"
@@ -83,7 +83,7 @@
     label: '{{ item.name }}'
   diff: false
   when:
-    - false if item.state is undefined else item.state == 'absent'
+    - item.state is defined and item.state == 'absent'
   ansible.builtin.file:
     path: "/etc/ssh/{{ item.name }}.pub"
     state: absent
@@ -135,6 +135,7 @@
   notify:
     - Reload openssh
   when:
+    - openssh_revoked_keys_file is not none
     - openssh_revoked_keys_file | length > 0
   ansible.builtin.copy:
     content: "{{ openssh_revoked_keys | join('\n') }}"
@@ -149,7 +150,8 @@
   notify:
     - Reload openssh
   when:
-    - false if openssh_trusted_user_ca_keys_file is none else (openssh_trusted_user_ca_keys_file | length > 0)
+    - openssh_trusted_user_ca_keys_file is not none
+    - openssh_trusted_user_ca_keys_file | length > 0
   ansible.builtin.copy:
     content: "{{ openssh_trusted_user_ca_keys | join('\n') }}"
     dest: "{{ openssh_trusted_user_ca_keys_file }}"
@@ -164,7 +166,7 @@
   loop_control:
     label: "{{ item.path | dirname }}"
   when:
-    - true if item.state is undefined else item.state == 'present'
+    - item.state is not defined or item.state == 'present'
   ansible.builtin.file:
     path: "{{ item.path | dirname }}"
     mode: "{{ item.dirmode | default('u=rwx,g=,o=') }}"
@@ -174,12 +176,12 @@
   tags:
     - openssh
 
-- name: Write principle file
+- name: Write principal file
   loop: "{{ openssh_authorized_principals }}"
   loop_control:
     label: "{{ item.path }}"
   when:
-    - true if item.state is undefined else item.state == 'present'
+    - item.state is not defined or item.state == 'present'
   ansible.builtin.copy:
     content: "{{ item.principals | join('\n') }}"
     dest: "{{ item.path }}"
@@ -189,12 +191,12 @@
   tags:
     - openssh
 
-- name: Remove principle file
+- name: Remove principal file
   loop: "{{ openssh_authorized_principals }}"
   loop_control:
     label: "{{ item.path }}"
   when:
-    - false if item.state is undefined else item.state == 'absent'
+    - item.state is defined and item.state == 'absent'
   ansible.builtin.file:
     path: "{{ item.path }}"
     state: absent
