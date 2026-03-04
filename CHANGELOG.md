@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.5.0](https://github.com/rolehippie/openssh/compare/v3.4.0...v3.5.0) (2026-03-04)
+
+### Features
+
+* improve conditional behavior ([03ad3a2](https://github.com/rolehippie/openssh/commit/03ad3a2659caed271e37028e793b1b32ed71d7cf))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([b3c662f](https://github.com/rolehippie/openssh/commit/b3c662f949eefe50ba4bd248a627573bf6a088aa))
+* replace nixfmt package ([0733005](https://github.com/rolehippie/openssh/commit/0733005410b4b547b595e7466d0f74c532ac0fa1))
+
 ## [3.4.0](https://github.com/rolehippie/openssh/compare/v3.3.0...v3.4.0) (2026-03-02)
 
 ### Dependencies
