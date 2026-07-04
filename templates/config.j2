@@ -5,9 +5,9 @@ AddressFamily {{ openssh_address_family }}
 ListenAddress {{ item }}
 {% endfor %}
 
-{% for item in openssh_host_keys %}
+{% for item in openssh_host_keys %}{% if item.state is not defined or item.state == 'present' %}
 HostKey /etc/ssh/{{ item.name }}
-{% endfor %}
+{% endif %}{% endfor %}
 
 Ciphers {{ openssh_valid_ciphers | join(',') }}
 MACs {{ openssh_valid_macs | join(',') }}
