@@ -1,5 +1,15 @@
 # Changelog
 
+## [4.5.0](https://github.com/rolehippie/openssh/compare/v4.4.0...v4.5.0) (2026-08-17)
+
+### Dependencies
+
+* **minor:** update dependency community.general to >=13.3.0,<13.4.0 ([#66](https://github.com/rolehippie/openssh/issues/66)) ([afd098c](https://github.com/rolehippie/openssh/commit/afd098c2b68ea9a27d5f4460a1009f2ec9ba387c))
+* **minor:** update dependency pipx:ansible-lint to v26.8.0 ([#67](https://github.com/rolehippie/openssh/issues/67)) ([8168a6f](https://github.com/rolehippie/openssh/commit/8168a6fa9412a699f75e4319e4933e6af77d2f39))
+* **minor:** update dependency pipx:molecule to v26.8.0 ([#68](https://github.com/rolehippie/openssh/issues/68)) ([f279ce1](https://github.com/rolehippie/openssh/commit/f279ce1965dd9a3e5b3498db88e2f3c906d42bb3))
+* **patch:** update dependency pipx:ansible-core to v2.21.3 ([#64](https://github.com/rolehippie/openssh/issues/64)) ([ef31dd3](https://github.com/rolehippie/openssh/commit/ef31dd3f1fc0081a10a351f68b1a2fb56e7605e7))
+* **patch:** update dependency pre-commit to v4.6.2 ([#65](https://github.com/rolehippie/openssh/issues/65)) ([ee5effa](https://github.com/rolehippie/openssh/commit/ee5effafacead959e1b9a933402ea805f8020eab))
+
 ## [4.4.0](https://github.com/rolehippie/openssh/compare/v4.3.0...v4.4.0) (2026-08-10)
 
 ### Dependencies
