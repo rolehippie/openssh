@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.6.0](https://github.com/rolehippie/openssh/compare/v4.5.1...v4.6.0) (2026-09-07)
+
+### Features
+
+* add separate requirements for molecule run ([514a547](https://github.com/rolehippie/openssh/commit/514a547ec94e65b6fdac26d3c04368899ca9429f))
+* use new required facts as attributes ([8699927](https://github.com/rolehippie/openssh/commit/8699927fefeda9e73681c88a83801a5ea44b9dca))
+
 ## [4.5.1](https://github.com/rolehippie/openssh/compare/v4.5.0...v4.5.1) (2026-08-31)
 
 ### Dependencies
