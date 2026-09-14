@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.7.0](https://github.com/rolehippie/openssh/compare/v4.6.0...v4.7.0) (2026-09-14)
+
+### Dependencies
+
+* **minor:** update dependency community.general to >=13.4.0,<13.5.0 ([#70](https://github.com/rolehippie/openssh/issues/70)) ([1aa5e07](https://github.com/rolehippie/openssh/commit/1aa5e0703c96110fe3a73a7b96929646123e5583))
+* **mise:** update dependency pipx:ansible-core to v2.21.4 ([#71](https://github.com/rolehippie/openssh/issues/71)) ([60613e0](https://github.com/rolehippie/openssh/commit/60613e0f94916d82943d21c695cdfe2c539c6a85))
+* **mise:** update dependency prek to v0.5.3 ([#72](https://github.com/rolehippie/openssh/issues/72)) ([3347ee4](https://github.com/rolehippie/openssh/commit/3347ee41ea803c3babef945b4d5df72b0b0d915e))
+
 ## [4.6.0](https://github.com/rolehippie/openssh/compare/v4.5.1...v4.6.0) (2026-09-07)
 
 ### Features
